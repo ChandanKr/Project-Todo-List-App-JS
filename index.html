@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App by Chandan</title>
+    <link rel="stylesheet" href="todoApp.css" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        html {
+            color: #fff;
+            font-size: 62.5%;
+        }
+
+        body {
+            background-image: linear-gradient(41deg,
+                    rgba(107, 107, 107, 0.04) 0%,
+                    rgba(107, 107, 107, 0.04) 8%,
+                    rgba(31, 31, 31, 0.04) 8%,
+                    rgba(31, 31, 31, 0.04) 100%),
+                linear-gradient(9deg,
+                    rgba(228, 228, 228, 0.04) 0%,
+                    rgba(228, 228, 228, 0.04) 62%,
+                    rgba(54, 54, 54, 0.04) 62%,
+                    rgba(54, 54, 54, 0.04) 100%),
+                linear-gradient(124deg,
+                    rgba(18, 18, 18, 0.04) 0%,
+                    rgba(18, 18, 18, 0.04) 37%,
+                    rgba(233, 233, 233, 0.04) 37%,
+                    rgba(233, 233, 233, 0.04) 100%),
+                linear-gradient(253deg,
+                    rgba(201, 201, 201, 0.04) 0%,
+                    rgba(201, 201, 201, 0.04) 55%,
+                    rgba(47, 47, 47, 0.04) 55%,
+                    rgba(47, 47, 47, 0.04) 100%),
+                linear-gradient(270deg,
+                    rgba(172, 172, 172, 0.04) 0%,
+                    rgba(172, 172, 172, 0.04) 33%,
+                    rgba(26, 26, 26, 0.04) 33%,
+                    rgba(26, 26, 26, 0.04) 100%),
+                linear-gradient(64deg,
+                    rgba(11, 11, 11, 0.04) 0%,
+                    rgba(11, 11, 11, 0.04) 38%,
+                    rgba(87, 87, 87, 0.04) 38%,
+                    rgba(87, 87, 87, 0.04) 100%),
+                linear-gradient(347deg,
+                    rgba(199, 199, 199, 0.04) 0%,
+                    rgba(199, 199, 199, 0.04) 69%,
+                    rgba(4, 4, 4, 0.04) 69%,
+                    rgba(4, 4, 4, 0.04) 100%),
+                linear-gradient(313deg,
+                    rgba(36, 36, 36, 0.04) 0%,
+                    rgba(36, 36, 36, 0.04) 20%,
+                    rgba(91, 91, 91, 0.04) 20%,
+                    rgba(91, 91, 91, 0.04) 100%),
+                linear-gradient(90deg, rgb(10, 17, 72), rgb(35, 148, 228));
+            padding: 1rem;
+        }
+
+        .mainDiv {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .contentDiv {
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            text-shadow: 5px 5px 5px #000;
+        }
+
+        .taskAddDiv {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .inputBox {
+            flex: 1;
+            font-size: 18px;
+            padding: 5px 20px;
+            width: 100%;
+            outline: none;
+            background: #ffffff;
+            color: #000000;
+            border: 1px solid #c4d1eb;
+            border-radius: 5px;
+            box-shadow: 3px 3px 2px 0px #e2e2e2;
+            transition: 0.3s ease;
+        }
+
+        .inputBox:focus {
+            background: #f2f2f2;
+            border: 1px solid #5a7ec7;
+            border-radius: 10px;
+        }
+
+        .inputBox::placeholder {
+            color: #dddddd;
+        }
+
+        .addBtn {
+            font-size: 18px;
+            padding: 5px 20px;
+            width: 100px;
+            outline: none;
+            background-image: linear-gradient(to bottom right, #2f69c4, #13892c);
+            color: #fff;
+            border: 1px solid #c4d1eb;
+            border-radius: 5px;
+            box-shadow: 3px 3px 2px 0px #e2e2e2;
+            transition: 0.3s ease;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        .allTasksDiv {
+            margin-top: 2rem;
+        }
+
+        .allTasksDiv div {
+            display: flex;
+            margin-top: 1rem;
+        }
+
+        .allTasksDiv p {
+            flex: 1;
+            font-size: 1.8rem;
+            background-image: linear-gradient(to bottom left, #ec3f92, #5737bc);
+            padding: 0.5rem 0.5rem 0.5rem 1rem;
+            text-align: start;
+            border: 2px solid yellow;
+            border-radius: 5px;
+            box-shadow: 3px 3px 2px 0px #e2e2e2;
+            transition: 0.3s ease;
+            text-transform: capitalize;
+        }
+
+        .allTasksDiv button {
+            width: 100px;
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            cursor: pointer;
+            margin-left: 1rem;
+            background-image: linear-gradient(to bottom left, #2f69c4, #13892c);
+            color: #fff;
+            border: 2px solid #fff;
+            border-radius: 5px;
+            box-shadow: 3px 3px 2px 0px #e2e2e2;
+            transition: 0.3s ease;
+        }
+
+        p {
+            font-size: 1.4rem;
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        @media screen and (max-width: 600px) {
+            .taskAddDiv {
+                flex-direction: column;
+            }
+
+            .addBtn,
+            .inputBox {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="mainDiv">
+        <h1>Create your Todo List</h1>
+        <div class="contentDiv">
+            <div class="taskAddDiv">
+                <input class="inputBox" type="text" placeholder="Enter your todo item here...">
+                <button class="addBtn" type="button">Add</button>
+            </div>
+            <div class="allTasksDiv"></div>
+        </div>
+        <p style="margin-top: 5rem;">Copyright : &#169; <a href="https://www.linkedin.com/in/chandan2606/"
+                style="color: #fff;">Chandan Kumar</a>.</p>
+        <p style="margin-top: 0.5rem;">Developer feature: It will remember your list until you delete it by yourself.
+        </p>
+    </div>
+    <script>
+        let inputBox = document.querySelector(".inputBox");
+        let addButton = document.querySelector(".addBtn");
+        let allTasksDiv = document.querySelector(".allTasksDiv");
+        let deleteBtn = document.querySelector(".deleteBtn");
+
+        const getTodoListFromLocal = () => {
+            return JSON.parse(localStorage.getItem("myTodoListItems"));
+        }
+
+        const addTodoListLocalStorage = (localTodoList) => {
+            return localStorage.setItem('myTodoListItems', JSON.stringify(localTodoList));
+        };
+
+        let localTodoList = getTodoListFromLocal() || [];
+
+        const addTodoDynamicElement = (curElem) => {
+            let divElem = document.createElement("div");
+            divElem.innerHTML = `<p>${curElem}</p><button class="deleteBtn">Delete</button>`;
+            allTasksDiv.append(divElem);
+        };
+
+        const addTodoList = () => {
+
+            const todoListValue = inputBox.value.trim();
+
+            inputBox.value = "";
+
+            if (todoListValue !== "" && !localTodoList.includes(todoListValue)) {
+                localTodoList.push(todoListValue);
+                localTodoList = [...new Set(localTodoList)]; // to remove duplicate elements
+                // console.log(localTodoList);
+                localStorage.setItem("myTodoListItems", JSON.stringify(localTodoList));
+
+                addTodoDynamicElement(todoListValue);
+            }
+        };
+
+        const showTodoList = () => {
+            console.log(localTodoList);
+            localTodoList.forEach((curElem) => {
+                addTodoDynamicElement(curElem);
+            });
+        };
+
+        showTodoList();
+
+        const removeTodoElem = () => {
+            const todoToRemove = event.target;
+            let todoListContent = todoToRemove.previousElementSibling.innerText;
+            let parentElem = todoToRemove.parentElement;
+            // console.log(todoListContent);
+
+            localTodoList = localTodoList.filter((currentTodo) => {
+                return currentTodo !== todoListContent.toLowerCase();
+            });
+            addTodoListLocalStorage(localTodoList);
+            parentElem.remove();
+        };
+
+
+        addButton.addEventListener("click", addTodoList);
+
+        allTasksDiv.addEventListener("click", (event) => {
+            if (event.target.classList.contains("deleteBtn")) {
+                removeTodoElem();
+            }
+        });
+
+    </script>
+</body>
+
+</html>
