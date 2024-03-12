@@ -260,7 +260,8 @@
             localTodoList = localTodoList.filter((currentTodo) => {
                 return currentTodo !== todoListContent.toLowerCase();
             });
-            addTodoListLocalStorage(localTodoList);
+            // addTodoListLocalStorage(localTodoList);
+            localStorage.setItem("myTodoListItems", JSON.stringify(localTodoList));
             parentElem.remove();
         };
 
